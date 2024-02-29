@@ -12,6 +12,6 @@ export class UsersQueryFixedModel {
   sortDirection: 'asc' | 'desc';
   pageNumber: number;
   pageSize: number;
-  searchLoginTerm: string | RegExp;
-  searchEmailTerm: string | RegExp;
+  searchLoginTerm: string;
+  searchEmailTerm: string;
 }

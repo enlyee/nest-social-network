@@ -1,9 +1,8 @@
-import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
+import { Injectable, PipeTransform } from '@nestjs/common';
 import {
   UsersQueryFixedModel,
   UsersQueryInputModel,
 } from '../../features/users/api/models/input/users.query.input.model';
-import { IsNumber } from 'class-validator';
 const sortingUsersName = ['login', 'email', 'createdAt'];
 
 @Injectable()

@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-  UsersQueryFixedModel,
-  UsersQueryInputModel,
-} from '../api/models/input/users.query.input.model';
+import { UsersQueryFixedModel } from '../api/models/input/users.query.input.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from '../domain/users.entity';
 import { Model } from 'mongoose';
