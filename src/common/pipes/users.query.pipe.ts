@@ -14,6 +14,7 @@ export class UsersQueryPipe implements PipeTransform {
           ? query.sortBy
           : 'createdAt'
         : 'createdAt',
+      //TODO: Only positive numbers checking
       sortDirection: query.sortDirection === 'asc' ? 'asc' : 'desc',
       pageNumber: query.pageNumber || 1,
       pageSize: query.pageSize || 10,

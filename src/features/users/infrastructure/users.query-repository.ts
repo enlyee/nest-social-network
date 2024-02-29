@@ -14,7 +14,6 @@ export class UsersQueryRepository {
   async getAll(
     query: UsersQueryFixedModel,
   ): Promise<UsersOutputModelWithQuery> {
-    console.log(query.searchLoginTerm);
     const collectionSize = await this.userModel.countDocuments({
       $or: [
         { login: new RegExp(query.searchLoginTerm, 'i') },
