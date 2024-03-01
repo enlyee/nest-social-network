@@ -16,17 +16,14 @@ export class BlogsQueryPipe implements PipeTransform {
           : 'createdAt'
         : 'createdAt',
       sortDirection: query.sortDirection === 'asc' ? 'asc' : 'desc',
-      //TODO: check float
-      pageNumber: query.pageNumber
-        ? query.pageNumber > 0
+      pageNumber:
+        query.pageNumber && query.pageNumber > 0 && query.pageNumber % 1 === 0
           ? query.pageNumber
-          : 1
-        : 1,
-      pageSize: query.pageSize
-        ? query.pageSize > 0
+          : 1,
+      pageSize:
+        query.pageSize && query.pageSize > 0 && query.pageSize % 1 === 0
           ? query.pageSize
-          : 10
-        : 10,
+          : 10,
       searchNameTerm: query.searchNameTerm || '',
     };
 

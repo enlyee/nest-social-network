@@ -29,7 +29,7 @@ export class Blog {
     this.description = description;
     this.websiteUrl = websiteUrl;
     this.createdAt = new Date();
-    this.isMembership = true;
+    this.isMembership = false;
   }
 }
 export const BlogSchema = SchemaFactory.createForClass(Blog);

@@ -14,10 +14,15 @@ export class UsersQueryPipe implements PipeTransform {
           ? query.sortBy
           : 'createdAt'
         : 'createdAt',
-      //TODO: Only positive numbers checking
       sortDirection: query.sortDirection === 'asc' ? 'asc' : 'desc',
-      pageNumber: query.pageNumber || 1,
-      pageSize: query.pageSize || 10,
+      pageNumber:
+        query.pageNumber && query.pageNumber > 0 && query.pageNumber % 1 === 0
+          ? query.pageNumber
+          : 1,
+      pageSize:
+        query.pageSize && query.pageSize > 0 && query.pageSize % 1 === 0
+          ? query.pageSize
+          : 10,
       searchLoginTerm: query.searchLoginTerm || '',
       searchEmailTerm: query.searchEmailTerm || '',
     };

@@ -1,4 +1,15 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  NotFoundException,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { BlogsInputModel } from './models/input/blogs.input.model';
 import { BlogsService } from '../application/blogs.service';
 import { BlogsQueryPipe } from '../../../common/pipes/blogs.query.pipes';
@@ -21,5 +32,29 @@ export class BlogsController {
   async get(@Query(BlogsQueryPipe) query: BlogsQueryFixedModel) {
     const blogs = await this.blogsQueryRepository.getBlogs(query);
     return blogs;
+  }
+
+  @Get(':id')
+  async getById(@Param('id') id: string) {
+    const blog = await this.blogsQueryRepository.getBlogById(id);
+    if (!blog) throw new NotFoundException();
+    return blog;
+  }
+
+  @HttpCode(204)
+  @Put(':id')
+  async updateById(
+    @Param('id') id: string,
+    @Body() updateModel: BlogsInputModel,
+  ) {
+    const blog = await this.blogsService.updateById(id, updateModel);
+    if (!blog) throw new NotFoundException();
+  }
+
+  @HttpCode(204)
+  @Delete(':id')
+  async deleteById(@Param('id') id: string) {
+    const status = await this.blogsService.deleteById(id);
+    if (!status) throw new NotFoundException();
   }
 }

@@ -1,7 +1,7 @@
 import { BlogsQueryFixedModel } from '../api/models/input/blogs.query.input.model';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Blog } from '../domain/blogs.entity';
+import { Blog, BlogDocument } from '../domain/blogs.entity';
 import { Model } from 'mongoose';
 import { BlogsOutputModelMapper } from '../api/models/output/blogs.output.model';
 
@@ -26,5 +26,11 @@ export class BlogsQueryRepository {
       totalCount: collectionSize,
       items: blogs.map(BlogsOutputModelMapper),
     };
+  }
+
+  async getBlogById(id: string) {
+    const blog: BlogDocument | null = await this.blogModel.findOne({ _id: id });
+    if (!blog) return false;
+    return BlogsOutputModelMapper(blog);
   }
 }

@@ -15,4 +15,14 @@ export class BlogsService {
     const newBlog = await this.blogsRepository.create(blog);
     return newBlog;
   }
+
+  async updateById(id: string, blogData: BlogsInputModel) {
+    const updatedBlog = await this.blogsRepository.updateById(id, blogData);
+    return updatedBlog;
+  }
+
+  async deleteById(id: string) {
+    const status = await this.blogsRepository.deleteById(id);
+    return status;
+  }
 }
